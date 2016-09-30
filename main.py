@@ -175,7 +175,7 @@ class GeneratorAudio:
         if self.state == GeneratorAudio.STATE_GOING_UP:
             # We are going up, set up that 'animator'.
             freq_anim = self.up_freq_anim
-        elif self.state == GeneratorAudio.STATE_GOING_UP:
+        elif self.state == GeneratorAudio.STATE_GOING_DOWN:
             # We are going down, etc.
             freq_anim = self.down_freq_anim
 
