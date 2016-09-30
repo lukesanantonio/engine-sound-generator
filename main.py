@@ -56,12 +56,12 @@ class FreqAnimator:
             self.anim_state = FreqAnimator.RUNNING_STATE
 
         # As long as we are not done, do stuff, otherwise skip it all
-        elif self.anim_state != FreqAnimator.DONE_STATE:
+        if self.anim_state != FreqAnimator.DONE_STATE:
             # Accumulate the time
             self.accum_time += dt
 
             # Time to do something
-            if self.accum_time > self.time_step:
+            if self.accum_time >= self.time_step:
                 # We handled some time, so remove it for next time
                 self.accum_time -= self.time_step
 
