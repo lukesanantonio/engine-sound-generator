@@ -20,6 +20,8 @@ ANIM_RATE = 250
 class FreqConst:
     def __init__(self):
         pass
+    def is_done(self):
+        return False
     def next(self, dt, old_val):
         return old_val
 
@@ -40,6 +42,9 @@ class FreqAnimator:
 
     def reset(self):
         self.anim_state = FreqAnimator.INIT_STATE
+
+    def is_done(self):
+        return self.anim_state == FreqAnimator.DONE_STATE
 
     def next(self, dt, old_val):
         if self.anim_state == FreqAnimator.INIT_STATE:
@@ -186,6 +191,11 @@ class GeneratorAudio:
             struct.pack_into('<f', self.buf, FRAME_SIZE * i, val)
 
             freq = freq_anim.next(dt, freq)
+
+            # If it's done, it's time to go back to constant
+            if freq_anim.is_done():
+                self.state = GeneratorAudio.STATE_STEADY
+                freq_anim = self.const_freq_anim
 
         self.last_time = cur_time
         self.cur_freq = freq
