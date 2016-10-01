@@ -229,7 +229,6 @@ if __name__ == '__main__':
         if cmd == 'start':
             print('Starting engine...')
             eng.start()
-            eng.step_up()
         elif cmd == 'stop':
             print('Stopping engine...')
             eng.stop()
