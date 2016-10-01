@@ -15,7 +15,7 @@ FRAME_SIZE = SAMPLE_SIZE
 START_FREQUENCY = 220
 
 # Hz / second
-ANIM_RATE = 250
+ANIM_RATE = 1
 
 class FreqConst:
     def __init__(self):
