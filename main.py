@@ -214,7 +214,6 @@ if __name__ == '__main__':
     stream.start_stream()
 
     while stream.is_active():
-        print('Engine state:', eng.state, 'Freq:', eng.cur_freq)
         try:
             # How nice, a command prompt!
             cmd = input('> ')
@@ -239,6 +238,10 @@ if __name__ == '__main__':
         elif cmd == 'down':
             print('Stepping down...')
             eng.step_down()
+        # Print engine information
+        elif cmd == 'status':
+            # This happens every iteration, just be quiet about it.
+            pass
         # Quit the program
         elif cmd == "quit":
             print("Quitting...")
@@ -248,6 +251,8 @@ if __name__ == '__main__':
             print('No help for you!')
         else:
             print('Unknown command, try again!')
+
+        print('Engine state:', eng.state, 'Freq:', eng.cur_freq)
 
     # Clean up
     stream.stop_stream()
