@@ -103,6 +103,11 @@ class FreqAnimator:
         # worry about it.
         return self.cur_value
 
+def square(t, f):
+    return 4 / math.pi * (math.sin(2 * math.pi *  f * t) +
+                          1 / 3 * math.sin(6 * math.pi * f * t) +
+                          1 / 5 * math.sin(10 * math.pi * f * t))
+
 class InactiveGeneratorError(Exception):
     pass
 
