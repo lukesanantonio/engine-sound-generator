@@ -128,8 +128,10 @@ class GeneratorAudio:
         self.up_freq_anim = FreqAnimator(anim_rate, 100, -25, 50)
         self.down_freq_anim = FreqAnimator(anim_rate, -100, 25, -50)
 
-        # We are going to need to reset these functions every time the state
-        # changes!
+        self.debug_file = None
+
+    def write_audio(self, fo):
+        self.debug_file = fo
 
     def step_up(self):
         if self.is_active():
@@ -205,13 +207,17 @@ class GeneratorAudio:
         self.last_time = cur_time
         self.cur_freq = freq
 
-        # Return data.
+        # Write data and return data.
+        if self.debug_file:
+            self.debug_file.write(self.buf)
+
         return bytes(self.buf)
 
 if __name__ == '__main__':
     p = pyaudio.PyAudio()
 
     eng = GeneratorAudio()
+    eng.write_audio(open('debug_audio.raw', 'wb'))
 
     stream = p.open(format=pyaudio.paFloat32, channels=1,
                     rate=SAMPLE_RATE, output=True,
