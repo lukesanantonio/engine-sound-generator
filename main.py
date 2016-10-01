@@ -125,8 +125,8 @@ class GeneratorAudio:
         self.cur_freq = cur_freq
 
         self.const_freq_anim = FreqConst()
-        self.up_freq_anim = FreqAnimator(anim_rate, 200, -350, 170)
-        self.down_freq_anim = FreqAnimator(anim_rate, -200, 350, -170)
+        self.up_freq_anim = FreqAnimator(anim_rate, 100, -150, 70)
+        self.down_freq_anim = FreqAnimator(anim_rate, -100, 150, -70)
 
         self.debug_file = None
 
