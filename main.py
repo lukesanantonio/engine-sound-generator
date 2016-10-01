@@ -189,10 +189,10 @@ class GeneratorAudio:
             dt = i / SAMPLE_RATE
             cur_time = self.last_time + dt
 
-            # val = noise.pnoise1(cur_time * freq, octaves=6, persistence=.35,
-                                # lacunarity=1.75)
-            val = math.sin(cur_time * 2 * math.pi * freq)
-
+            val = square(cur_time, freq) * .02 + \
+                  noise.pnoise1(cur_time * freq, octaves=5,
+                                persistence=.95,lacunarity=2.0) * .98
+            val *= 1.1
             struct.pack_into('<f', self.buf, FRAME_SIZE * i, val)
 
             freq = freq_anim.next(dt, freq)
